@@ -22,7 +22,7 @@ export const HomePage = () => {
         if(values.nombre.length === 0 || values.total.length === 0 || values.fecha.length === 0)return setHasInputError(true);
         try {
             setstatus(Status.inProgress)
-            await axios.post('http://192.168.0.107:8080/api/presupuesto/',values);
+            await axios.post('https://presupuesto-backend.onrender.com/api/presupuesto/',values);
             CustomModals.showCustomModal('Gasto Creado Exitosamente', 'success');
             setstatus(Status.done);
             resetForm();
@@ -37,7 +37,7 @@ export const HomePage = () => {
     }
     const getGastos = async():Promise<GastosResponse> => {
             setstatus(Status.inProgress)
-            const resp = await axios.get<GastosResponse>('http://192.168.0.107:8080/api/presupuesto/')
+            const resp = await axios.get<GastosResponse>('https://presupuesto-backend.onrender.com/api/presupuesto/')
             
             const data = resp.data;
             setgastos(data);
